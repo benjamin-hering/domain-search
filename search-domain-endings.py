@@ -14,7 +14,7 @@ def checkRegistration(domain):
         print(domain+" is unregistered")
         logUnregisteredDomain(domain)
 
-def logUnregisteredDomain(domain, logFile="unregistered-domains.txt"):
+def logUnregisteredDomain(domain, logFile="unregistered-domains-endings.txt"):
     with open(logFile, "a") as file:
         file.write(domain+'\n')
 
@@ -35,8 +35,10 @@ if __name__ == "__main__":
             for domain in domainList:
                 domainToCheck = domain.rstrip()
                 if len(domainToCheck) <= maxLength:
-                    checkRegistration(domainToCheck+".us")
-                    checkRegistration(domainToCheck+".com")
+                    if domainToCheck[-3:] == 'com':
+                        print(domainToCheck[:-3]+'.com')
+                    #checkRegistration(domainToCheck+".us")
+                    #checkRegistration(domainToCheck+".com")
 
 
 
